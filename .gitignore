@@ -1,0 +1,16 @@
+# Compilação do Java / Spring Boot
+target/
+*.class
+
+# Banco de dados local (não enviar o arquivo do banco para o Git)
+*.db
+database.db
+
+# Configurações de IDE (VS Code / Eclipse / IntelliJ)
+.vscode/
+.idea/
+*.iml
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
