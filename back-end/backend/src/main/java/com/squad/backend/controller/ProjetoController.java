@@ -2,7 +2,6 @@ package com.squad.backend.controller;
 
 import com.squad.backend.model.Projeto;
 import com.squad.backend.repository.ProjetoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +11,12 @@ import java.util.List;
 @CrossOrigin(origins = "*") // Libera o acesso para o front-end (HTML/JS) sem bloqueio de navegador
 public class ProjetoController {
 
-    @Autowired
-    private ProjetoRepository projetoRepository;
+    private final ProjetoRepository projetoRepository;
+
+    // Injeção por construtor (Recomendação moderna do Spring Boot)
+    public ProjetoController(ProjetoRepository projetoRepository) {
+        this.projetoRepository = projetoRepository;
+    }
 
     // Rota GET (http://localhost:8080/api/projetos) -> Lista todos os projetos do SQLite
     @GetMapping
