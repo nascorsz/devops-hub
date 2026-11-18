@@ -1,4 +1,4 @@
-// FORMULÁRIO DE CADASTRO (Comunicação com a API)
+// FORMULÁRIO DE CADASTRO
 const formularioCadastro = document.getElementById("formCadastro");
 
 if (formularioCadastro) {
@@ -10,14 +10,7 @@ if (formularioCadastro) {
         const senha = document.getElementById("senhaCadastro").value;
         const tipo = document.getElementById("tipoUsuario").value;
 
-        // REQUISITO DE SEGURANÇA: Impedir cadastro direto como Administrador pelo front-end
-        if (tipo === "administrador" || tipo === "admin") {
-            alert("Contas administrativas não podem ser criadas por este formulário!");
-            return;
-        }
-
         try {
-            // Enviando os dados para o Spring Boot salvar no banco SQLite com segurança
             const response = await fetch("http://localhost:8080/api/usuarios/cadastrar", {
                 method: "POST",
                 headers: {
@@ -27,7 +20,7 @@ if (formularioCadastro) {
             });
 
             if (response.ok) {
-                alert("Cadastro realizado com sucesso!");
+                alert("Cadastro realizado com sucesso! Faça login para continuar.");
                 window.location.href = "login.html";
             } else {
                 const erroMsg = await response.text();
@@ -35,7 +28,7 @@ if (formularioCadastro) {
             }
         } catch (error) {
             console.error("Erro de conexão:", error);
-            alert("Não foi possível conectar ao servidor. O back-end está rodando?");
+            alert("Não foi possível conectar ao servidor.");
         }
     });
 }
@@ -53,7 +46,7 @@ if (formularioLogin) {
 
         try {
             // O servidor valida a senha com hash e retorna o usuário se estiver tudo certo
-            const response = await fetch("http://localhost:8080/api/usuarios/login", {
+            const response = await fetch("http://127.0.0.1:8080/api/usuarios/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
