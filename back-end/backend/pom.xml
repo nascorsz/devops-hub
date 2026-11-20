@@ -50,6 +50,12 @@
 			<artifactId>hibernate-community-dialects</artifactId>
 		</dependency>
 
+		<!-- Validação de dados (@NotBlank, @Email, @Size, @Valid) -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
 		<!-- Testes -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
