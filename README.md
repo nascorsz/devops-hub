@@ -77,10 +77,14 @@ O projeto utiliza o banco de dados SQLite, que opera através de um arquivo loca
 ## Como Configurar Variáveis de Ambiente
 Atualmente, as configurações da aplicação encontram-se centralizadas no arquivo `application.properties` localizado em:
 
-  back-end/backend/
-      ├── pom.xml
-      └── src/main/
-          ├── resources/application.properties
+```text
+back-end/backend/
+├── pom.xml
+└── src/
+    └── main/
+        └── resources/
+            └── application.properties
+```
         
  Contendo a definição padrão da porta e a conexão com o SQLite. Caso precise alterar portas ou parâmetros de conexão, ajuste-os diretamente neste arquivo.
 
@@ -117,14 +121,15 @@ Você pode registrar uma nova conta diretamente pelo formulário de cadastro da 
 
 ## Estrutura Geral do Projeto
 
+```text
 /
-├── backend/                  # Código-fonte do Servidor (Spring Boot)
+├── backend/                          # Código-fonte do Servidor (Spring Boot)
 │   ├── src/main/java/com/squad/backend/
-│   │   ├── controller/       # Controladores REST (ProjetoController, UsuarioController)
-│   │   ├── model/            # Entidades JPA (Projeto, Usuario)
-│   │   └── repository/       # Interfaces de Acesso a Dados (Spring Data JPA)
-│   └── src/main/resources/   # Configurações (application.properties)
-├── frontend/                 # Interface Gráfica (HTML, CSS, JS)
+│   │   ├── controller/               # Controladores REST (ProjetoController, UsuarioController)
+│   │   ├── model/                    # Entidades JPA (Projeto, Usuario)
+│   │   └── repository/               # Interfaces de Acesso a Dados (Spring Data JPA)
+│   └── src/main/resources/           # Configurações (application.properties)
+├── frontend/                         # Interface Gráfica (HTML, CSS, JS)
 │   ├── index.html
 │   ├── cadastro.html
 │   ├── login.html
@@ -133,6 +138,9 @@ Você pode registrar uma nova conta diretamente pelo formulário de cadastro da 
 │   ├── administrador.html
 │   ├── app.js
 │   └── style.css
-└── README.md                 # Documentação oficial do projeto
+└── README.md                         # Documentação oficial do projeto
+```
 
-## Equipe (DevOps Squad)
+---
+
+## Equipe DevOps Squad
