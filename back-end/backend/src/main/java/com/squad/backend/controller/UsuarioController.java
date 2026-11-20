@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})
 @RestController
 @RequestMapping("/api/usuarios")
 
@@ -42,6 +42,7 @@ public class UsuarioController {
         }
 
         Usuario novoUsuario = usuarioRepository.save(usuario);
+        novoUsuario.setSenha(null); // não devolve o hash da senha ao front-end
         return ResponseEntity.ok(novoUsuario);
     }
 

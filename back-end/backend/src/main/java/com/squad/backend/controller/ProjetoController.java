@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projetos")
-@CrossOrigin(origins = "*") // Libera o acesso para o front-end (HTML/JS) sem bloqueio de navegador
+@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})
 public class ProjetoController {
 
     private final ProjetoRepository projetoRepository;
