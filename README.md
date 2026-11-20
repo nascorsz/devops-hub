@@ -46,7 +46,7 @@ cd devops-hub
 ```
 
 ### 2. Executar o Back-end (Spring Boot + SQLite)
-Navegue até a pasta do back-end e execute o projeto:
+Navegue até a pasta do backend e execute o projeto:
 
 ```bash
 cd backend
@@ -78,7 +78,7 @@ O projeto utiliza o banco de dados SQLite, que opera através de um arquivo loca
 Atualmente, as configurações da aplicação encontram-se centralizadas no arquivo `application.properties` localizado em:
 
 ```text
-back-end/backend/
+backend/backend/
 ├── pom.xml
 └── src/
     └── main/
