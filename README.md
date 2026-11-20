@@ -5,7 +5,7 @@ O **DevOps Hub** é uma aplicação web desenvolvida para a Unidade Curricular d
 
 ---
 
-## Problema que Pretesnde Resolver
+## Problema que Pretende Resolver
 O ambiente acadêmico frequentemente gera projetos incríveis, TCCs e soluções inovadoras que acabam ficando restritos às salas de aula ou a repositórios isolados. O **DevOps Hub** resolve esse problema ao centralizar a vitrine desses trabalhos, facilitando a visibilidade dos estudantes perante mentores e empresas, além de promover conexões estratégicas e mentorias direcionadas.
 
 ---
@@ -78,7 +78,7 @@ O projeto utiliza o banco de dados SQLite, que opera através de um arquivo loca
 Atualmente, as configurações da aplicação encontram-se centralizadas no arquivo `application.properties` localizado em:
 
 ```text
-back-end/backend/
+backend/backend/
 ├── pom.xml
 └── src/
     └── main/
