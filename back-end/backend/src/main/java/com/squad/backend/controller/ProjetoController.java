@@ -20,15 +20,19 @@ public class ProjetoController {
         this.projetoRepository = projetoRepository;
     }
 
-    // GET /api/projetos -> lista todos os projetos salvos no SQLite
+    // GET /api/projetos                       -> lista TODOS os projetos (vitrine, mentor, admin)
+    // GET /api/projetos?autorEmail=a@b.com    -> lista só os projetos desse estudante ("meus projetos")
     @GetMapping
-    public List<Projeto> listarProjetos() {
-        return projetoRepository.findAll();
+    public List<Projeto> listarProjetos(@RequestParam(required = false) String autorEmail) {
+        if (autorEmail == null || autorEmail.isBlank()) {
+            return projetoRepository.findAll();
+        }
+        return projetoRepository.findByAutorEmail(autorEmail);
     }
 
     // POST /api/projetos -> salva um novo projeto
-    // O @Valid checa as regras da classe Projeto (título, descrição e área obrigatórios).
-    // Se algo estiver inválido, devolve 400 com a mensagem do erro.
+    // O @Valid checa as regras da classe Projeto (título, descrição, área e autor obrigatórios).
+    // Se algo estiver inválido, o TratadorDeErros devolve 400 com a mensagem.
     @PostMapping
     public Projeto criarProjeto(@Valid @RequestBody Projeto projeto) {
         return projetoRepository.save(projeto);
