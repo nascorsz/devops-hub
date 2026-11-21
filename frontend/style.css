@@ -1,4 +1,33 @@
-/* Configurações gerais da página */
+/* Organização:
+   1. Variáveis e base
+   2. Cabeçalho, menu e rodapé
+   3. Botões
+   4. Página inicial (index)
+   5. Login e cadastro
+   6. Áreas logadas (estudante, mentor, administrador)
+   7. Vitrine de projetos
+   8. Responsividade
+ */
+
+
+/* 1. VARIÁVEIS E BASE */
+:root {
+    --azul-escuro: #10243a;
+    --azul: #1769aa;
+    --azul-hover: #0f4f82;      /* hover dos botões: contraste bom com texto branco */
+    --turquesa: #21a6b7;
+    --turquesa-claro: #5ccbd9;  /* hover do botão turquesa */
+    --fundo: #f3f6fa;
+    --fundo-alt: #eaf0f6;
+    --branco: #ffffff;
+    --texto-suave: #526477;
+    --borda: #ccd5df;
+    --destaque-suave: #e1f3f8;
+
+    --raio: 12px;
+    --sombra: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,27 +35,31 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f6fa;
-    color: #10243a;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--fundo);
+    color: var(--azul-escuro);
+    line-height: 1.5;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #10243a;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
+/* Foco visível ao navegar pelo teclado (acessibilidade) */
+:focus-visible {
+    outline: 3px solid var(--azul-hover);
+    outline-offset: 2px;
 }
 
-header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+/* Em fundos escuros, o contorno precisa ser claro para aparecer */
+header :focus-visible,
+.inicio :focus-visible,
+footer :focus-visible {
+    outline-color: var(--turquesa);
 }
 
-header p {
-    color: #cbd8e6;
-    font-size: 16px;
+/* Respeita quem desativou animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
 }
 
 /* Conteúdo principal */
@@ -43,35 +76,37 @@ main h2 {
 }
 
 main p {
-    color: #526477;
+    color: var(--texto-suave);
     font-size: 17px;
     margin-bottom: 25px;
 }
 
-/* Botão */
-button {
-    background-color: #1769aa;
+
+/* 2. CABEÇALHO, MENU E RODAPÉ */
+header {
+    background-color: var(--azul-escuro);
     color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 8px;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #cbd8e6;
     font-size: 16px;
-    cursor: pointer;
 }
 
-button:hover {
-    background-color: #21a6b7;
-}
-
-/* Rodapé */
 footer {
-    background-color: #10243a;
+    background-color: var(--azul-escuro);
     color: white;
     text-align: center;
     padding: 20px;
 }
 
-/* Menu de navegação */
 .menu {
     display: flex;
     justify-content: space-between;
@@ -87,22 +122,51 @@ footer {
 }
 
 .menu a {
-    color: #f3f6fa;
+    color: var(--fundo);
     text-decoration: none;
     font-size: 15px;
 }
 
 .menu a:hover {
-    color: #21a6b7;
+    color: var(--turquesa);
 }
 
-/* Apresentação inicial */
+/* Nas áreas logadas o <header> também tem a classe .menu.
+   Sem este ajuste, a barra escura ficava limitada a 1100px de largura.
+   Agora a barra ocupa a tela toda e o conteúdo continua alinhado em 1100px. */
+header.menu {
+    max-width: none;
+    margin: 0;
+    padding: 20px max(20px, calc((100% - 1100px) / 2));
+}
+
+
+/* 3. BOTÕES */
+button {
+    background-color: var(--azul);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Antes o hover era turquesa com texto branco (contraste baixo, difícil de ler) */
+button:hover {
+    background-color: var(--azul-hover);
+}
+
+
+/* 4. PÁGINA INICIAL (index) */
 .inicio {
     min-height: 450px;
     display: flex;
     align-items: center;
     padding: 60px 10%;
-    background: linear-gradient(135deg, #10243a, #1769aa);
+    background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
     color: white;
 }
 
@@ -111,7 +175,7 @@ footer {
 }
 
 .inicio-conteudo span {
-    color: #21a6b7;
+    color: var(--turquesa);
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -127,8 +191,15 @@ footer {
     margin-bottom: 25px;
 }
 
+/* Texto escuro sobre turquesa: contraste adequado (o branco não passava) */
 .inicio-conteudo button {
-    background-color: #21a6b7;
+    background-color: var(--turquesa);
+    color: var(--azul-escuro);
+    font-weight: bold;
+}
+
+.inicio-conteudo button:hover {
+    background-color: var(--turquesa-claro);
 }
 
 /* Área dos perfis */
@@ -143,7 +214,7 @@ footer {
 }
 
 .subtitulo {
-    color: #526477;
+    color: var(--texto-suave);
     margin-bottom: 40px;
 }
 
@@ -154,9 +225,9 @@ footer {
 }
 
 .perfil-card {
-    background-color: #f3f6fa;
+    background-color: var(--fundo);
     padding: 30px 20px;
-    border-radius: 12px;
+    border-radius: var(--raio);
     transition: transform 0.3s ease;
 }
 
@@ -166,94 +237,25 @@ footer {
 
 .perfil-card h3 {
     margin-bottom: 15px;
-    color: #1769aa;
+    color: var(--azul);
 }
 
 .perfil-card p {
-    color: #526477;
+    color: var(--texto-suave);
     line-height: 1.5;
     margin-bottom: 20px;
 }
 
 .perfil-card a {
-    color: #1769aa;
+    color: var(--azul);
     text-decoration: none;
     font-weight: bold;
-}
-
-/* Tela de login / cadastro */
-.login {
-    padding: 70px 20px;
-    background-color: #eaf0f6;
-    display: flex;
-    justify-content: center;
-}
-
-.pagina-acesso {
-    display: flex;
-}
-
-.login-card {
-    background-color: white;
-    width: 100%;
-    max-width: 420px;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-.login-card h2 {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.login-card p {
-    text-align: center;
-    color: #526477;
-    margin-bottom: 25px;
-}
-
-.login-card label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.login-card input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccd5df;
-    border-radius: 7px;
-}
-
-.login-card select {
-    width: 100%;
-    box-sizing: border-box;
-    display: block;
-    padding: 12px;
-    margin: 8px 0 18px;
-    border: 1px solid #d1dce8;
-    border-radius: 7px;
-    background-color: white;
-    color: #10243a;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.login-card select:focus {
-    outline: none;
-    border-color: #1769aa;
-}
-
-.login-card button {
-    width: 100%;
 }
 
 /* Seção de oportunidades */
 .oportunidades {
     padding: 70px 8%;
-    background-color: #f3f6fa;
+    background-color: var(--fundo);
     text-align: center;
 }
 
@@ -270,17 +272,17 @@ footer {
 }
 
 .oportunidade-card {
-    background-color: white;
+    background-color: var(--branco);
     padding: 30px 22px;
-    border-radius: 12px;
+    border-radius: var(--raio);
     text-align: left;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--sombra);
 }
 
 .categoria {
     display: inline-block;
-    background-color: #e1f3f8;
-    color: #1769aa;
+    background-color: var(--destaque-suave);
+    color: var(--azul);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 13px;
@@ -289,16 +291,89 @@ footer {
 
 .oportunidade-card h3 {
     margin-bottom: 18px;
-    color: #10243a;
+    color: var(--azul-escuro);
 }
 
 .oportunidade-card p {
-    color: #526477;
+    color: var(--texto-suave);
     margin-bottom: 12px;
 }
 
 .oportunidade-card button {
     margin-top: 12px;
+    width: 100%;
+}
+
+
+/* 5. LOGIN E CADASTRO */
+.login {
+    padding: 70px 20px;
+    background-color: var(--fundo-alt);
+    display: flex;
+    justify-content: center;
+}
+
+.pagina-acesso {
+    display: flex;
+}
+
+.login-card {
+    background-color: var(--branco);
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: var(--raio);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-card p {
+    text-align: center;
+    color: var(--texto-suave);
+    margin-bottom: 25px;
+}
+
+.login-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.login-card input,
+.login-card select {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    background-color: var(--branco);
+    color: var(--azul-escuro);
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.login-card input {
+    margin-bottom: 20px;
+}
+
+.login-card select {
+    margin: 8px 0 18px;
+    cursor: pointer;
+}
+
+/* Campo em foco: borda azul + contorno (antes o contorno era removido por completo) */
+.login-card input:focus,
+.login-card select:focus {
+    border-color: var(--azul);
+    outline: 2px solid var(--azul);
+    outline-offset: 0;
+}
+
+.login-card button {
     width: 100%;
 }
 
@@ -309,16 +384,176 @@ footer {
     text-align: center;
     text-decoration: none;
     margin-top: 18px;
-    color: #1769aa;
+    color: var(--azul);
     font-weight: bold;
 }
 
 .voltar {
-    color: #526477;
+    color: var(--texto-suave);
     font-size: 14px;
 }
 
-/* Responsividade */
+
+/* ============================================================
+   6. ÁREAS LOGADAS (estudante, mentor, administrador)
+   Todos os estilos desta seção começam com body[data-perfil],
+   atributo que só existe nessas três páginas. Assim, a página
+   inicial, o login e o cadastro não são afetados.
+   ============================================================ */
+
+/* Faixa de boas-vindas: título e textos empilhados e legíveis sobre o fundo escuro */
+body[data-perfil] .inicio {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    margin: 30px auto;
+    padding: 40px 6%;
+    border-radius: 16px;
+}
+
+body[data-perfil] .inicio h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+/* A regra "main p" deixava estes textos cinza sobre fundo escuro (contraste ruim) */
+body[data-perfil] .inicio p {
+    color: #e6eef7;
+    max-width: 650px;
+    margin-bottom: 10px;
+}
+
+/* Os três cards viram uma grade que se adapta à largura da tela */
+body[data-perfil] .perfis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card genérico (usado nas áreas logadas e nos projetos).
+   Antes a classe .card não tinha nenhum estilo. */
+.card {
+    background-color: var(--branco);
+    padding: 24px 22px;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--azul);
+}
+
+.card p {
+    color: var(--texto-suave);
+}
+
+
+/* 7. VITRINE DE PROJETOS */
+.projetos {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.projetos h2 {
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+/* Formulário de novo projeto */
+.form-projeto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 600px;
+    padding: 24px;
+    background-color: var(--branco);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.form-projeto label {
+    font-weight: bold;
+}
+
+.form-projeto input,
+.form-projeto textarea,
+.form-projeto select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    background-color: var(--branco);
+    color: var(--azul-escuro);
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.form-projeto textarea {
+    resize: vertical;
+}
+
+.form-projeto input:focus,
+.form-projeto textarea:focus,
+.form-projeto select:focus {
+    border-color: var(--azul);
+    outline: 2px solid var(--azul);
+    outline-offset: 0;
+}
+
+/* O botão não precisa esticar a largura toda */
+.form-projeto button {
+    align-self: flex-start;
+}
+
+/* Grade de cards: o navegador decide quantas colunas cabem */
+.lista-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    color: var(--texto-suave); /* cor das mensagens "Carregando..." e "Nenhum projeto..." */
+}
+
+.projeto-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+}
+
+.projeto-card h3 {
+    font-size: 18px;
+    color: var(--azul-escuro);
+    overflow-wrap: anywhere; /* evita estourar o card com títulos longos */
+}
+
+.projeto-card p {
+    overflow-wrap: anywhere;
+}
+
+.projeto-area {
+    padding: 3px 12px;
+    font-size: 13px;
+    border-radius: 999px;
+    background-color: var(--destaque-suave);
+    color: var(--azul);
+}
+
+.projeto-card small {
+    margin-top: auto; /* empurra o autor para o rodapé do card */
+    color: var(--texto-suave);
+}
+
+
+/* 8. RESPONSIVIDADE */
 @media (max-width: 900px) {
     .oportunidades-container,
     .perfis-container {
@@ -333,6 +568,12 @@ footer {
     .menu ul {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    /* No cabeçalho das áreas logadas, título e "Sair" continuam lado a lado */
+    header.menu {
+        flex-direction: row;
+        gap: 12px;
     }
 }
 
@@ -356,5 +597,26 @@ footer {
 
     .perfis {
         padding: 45px 20px;
+    }
+
+    body[data-perfil] .inicio {
+        margin: 20px 16px;
+        padding: 30px 20px;
+    }
+
+    body[data-perfil] .inicio h1 {
+        font-size: 28px;
+    }
+
+    body[data-perfil] .perfis {
+        padding: 16px;
+    }
+
+    .form-projeto {
+        padding: 18px;
+    }
+
+    .form-projeto button {
+        align-self: stretch; /* botão ocupa a largura toda no celular */
     }
 }
