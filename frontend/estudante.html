@@ -37,6 +37,43 @@
             <p>Conecte-se com empresas e outros estudantes.</p>
         </div>
     </section>
+    <section class="projetos"> <!-- Formulário para o estudante cadastrar um novo projeto -->
+        <h2>Cadastrar novo projeto</h2>
+
+        <form id="formProjeto" class="form-projeto">
+            <label for="tituloProjeto">Título</label>
+            <input type="text" id="tituloProjeto" maxlength="150"
+                placeholder="Nome do projeto" required>
+
+            <label for="descricaoProjeto">Descrição</label>
+            <textarea id="descricaoProjeto" maxlength="1000" rows="4"
+                placeholder="Conte sobre o seu projeto" required></textarea>
+
+            <label for="areaProjeto">Área</label>
+            <select id="areaProjeto" required>
+                <option value="">Selecione</option>
+                <option value="Tecnologia">Tecnologia</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Educação">Educação</option>
+                <option value="Engenharia">Engenharia</option>
+                <option value="Outra">Outra</option>
+            </select>
+
+            <button type="submit">Cadastrar projeto</button>
+        </form>
+    </section>
+
+    <!-- Projetos do próprio estudante (filtrados por autorEmail) -->
+    <section class="projetos">
+        <h2>Meus projetos</h2>
+        <div id="listaMeusProjetos" class="lista-projetos">Carregando...</div>
+    </section>
+
+    <!-- Vitrine com os projetos de todos os estudantes -->
+    <section class="projetos">
+        <h2>Vitrine de projetos</h2>
+        <div id="listaVitrine" class="lista-projetos">Carregando...</div>
+    </section>
 <script src="app.js"></script>
 </body>
 </html>
