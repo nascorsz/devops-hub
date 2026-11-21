@@ -14,3 +14,18 @@ database.db
 # Arquivos de sistema
 .DS_Store
 Thumbs.db
+
+# Compilação
+target/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs de falha da JVM e logs em geral
+hs_err_pid*.log
+replay_pid*.log
+*.log
+
+# Banco SQLite local (remova esta linha se o banco precisar ir junto)
+*.db
