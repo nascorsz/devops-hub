@@ -1,12 +1,12 @@
-## DevOps Hub - Vitrine de Projetos e Talentos Acadêmicos
+## Hub Conecta - Plataforma de Vitrine de Projetos e Talentos Acadêmicos
 
 # Sobre o Projeto
-O **DevOps Hub** é uma aplicação web desenvolvida para a Unidade Curricular de Projeto e Engenharia de Software (Curso de Análise e Desenvolvimento de Sistemas). A plataforma atua como uma vitrine centralizada onde squads de estudantes cadastram seus projetos integradores de TI, facilitando a visualização por mentores, avaliadores e empresas parceiras.
+O **Hub Conecta** é uma aplicação web desenvolvida pelo **DevOps Squad** para a Unidade Curricular de Projeto e Engenharia de Software (Curso de Análise e Desenvolvimento de Sistemas). A plataforma atua como uma vitrine centralizada onde squads de estudantes cadastram seus projetos integradores de TI, facilitando a visualização por mentores, avaliadores e empresas parceiras.
 
 ---
 
 ## Problema que Pretende Resolver
-O ambiente acadêmico frequentemente gera projetos incríveis, TCCs e soluções inovadoras que acabam ficando restritos às salas de aula ou a repositórios isolados. O **DevOps Hub** resolve esse problema ao centralizar a vitrine desses trabalhos, facilitando a visibilidade dos estudantes perante mentores e empresas, além de promover conexões estratégicas e mentorias direcionadas.
+O ambiente acadêmico frequentemente gera projetos incríveis, TCCs e soluções inovadoras que acabam ficando restritos às salas de aula ou a repositórios isolados. O **Hub Conecta** resolve esse problema ao centralizar a vitrine desses trabalhos, facilitando a visibilidade dos estudantes perante mentores e empresas, além de promover conexões estratégicas e mentorias direcionadas.
 
 ---
 
