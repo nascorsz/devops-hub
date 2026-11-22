@@ -4,7 +4,7 @@
 PRAGMA foreign_keys = ON;
 
 DROP TABLE IF EXISTS applications;
-DROP TABLE IF EXISTS opportunities;
+DROP TABLE IF EXISTS projetos;
 DROP TABLE IF EXISTS mentorships;
 DROP TABLE IF EXISTS connection_requests;
 DROP TABLE IF EXISTS users;
