@@ -25,16 +25,18 @@
                 <input type="email" id="emailCadastro"
                     placeholder="Digite seu e-mail" required>
 
+                <!-- minlength/maxlength espelham a regra do back-end (6 a 72 caracteres) -->
                 <label for="senhaCadastro">Senha</label>
                 <input type="password" id="senhaCadastro"
-                    placeholder="Crie uma senha" required>
+                    minlength="6" maxlength="72"
+                    placeholder="Mínimo de 6 caracteres" required>
 
+                <!-- Só perfis com tela própria. O perfil "Empresa" será adicionado quando existir. -->
                 <label for="tipoUsuario">Tipo de usuário</label>
                 <select id="tipoUsuario" required>
                     <option value="">Selecione seu perfil</option>
                     <option value="estudante">Estudante</option>
                     <option value="mentor">Mentor</option>
-                    <option value="empresa">Empresa</option>
                 </select>
 
                 <button type="submit">Criar conta</button>

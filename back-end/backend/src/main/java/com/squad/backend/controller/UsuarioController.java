@@ -29,6 +29,15 @@ public class UsuarioController {
     // antes de executar o método. Se algo estiver inválido, devolve 400 automaticamente.
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrarUsuario(@Valid @RequestBody Usuario usuario) {
+        // Segurança: esta rota pública só aceita os perfis "estudante" e "mentor".
+        // Qualquer outro valor (inclusive "administrador" ou "empresa") é recusado com 400,
+        // mesmo que alguém chame a API diretamente, sem passar pelo formulário.
+        String tipo = usuario.getTipo() == null ? "" : usuario.getTipo().trim().toLowerCase();
+        if (!tipo.equals("estudante") && !tipo.equals("mentor")) {
+            return ResponseEntity.badRequest().body("Tipo de usuário inválido. Escolha estudante ou mentor.");
+        }
+        usuario.setTipo(tipo);
+
         // Impede dois cadastros com o mesmo e-mail
         Optional<Usuario> existente = usuarioRepository.findByEmail(usuario.getEmail());
         if (existente.isPresent()) {
@@ -38,11 +47,6 @@ public class UsuarioController {
         // Segurança: salva apenas o hash BCrypt, nunca a senha em texto puro
         String senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptografada);
-
-        // Segurança: ninguém pode se cadastrar como administrador por esta rota pública
-        if (usuario.getTipo() == null || usuario.getTipo().equalsIgnoreCase("administrador") || usuario.getTipo().equalsIgnoreCase("admin")) {
-            usuario.setTipo("estudante");
-        }
 
         Usuario novoUsuario = usuarioRepository.save(usuario);
         novoUsuario.setSenha(null); // não devolve o hash da senha ao front-end
