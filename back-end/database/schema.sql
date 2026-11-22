@@ -22,8 +22,8 @@ CREATE TABLE users (
     created_at    TEXT    NOT NULL DEFAULT (datetime('now'))
 );
 
--- Oportunidades / Projetos Acadêmicos cadastrados pelos squads
-CREATE TABLE opportunities (
+-- Projetos Acadêmicos cadastrados pelos squads
+CREATE TABLE projects (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     owner_id    INTEGER NOT NULL,
     title       TEXT    NOT NULL,
